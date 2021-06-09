@@ -2,9 +2,10 @@
   "name": "vscode-extensions-baymax",
   "displayName": "vscode-extensions-baymax",
   "description": "vscode-extensions-baymax",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "jinxiaochuan",
   "license": "ISC",
+  "icon": "images/icon.png",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jinxiaochuan/vscode-extensions-baymax.git"
