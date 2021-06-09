@@ -2,7 +2,7 @@
   "name": "vscode-extensions-baymax",
   "displayName": "vscode-extensions-baymax",
   "description": "vscode-extensions-baymax",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "jinxiaochuan",
   "license": "ISC",
   "repository": {
@@ -64,6 +64,8 @@
     "@types/vscode": "^1.56.0",
     "@typescript-eslint/eslint-plugin": "^4.14.1",
     "@typescript-eslint/parser": "^4.14.1",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^9.0.0",
     "eslint": "^7.19.0",
     "glob": "^7.1.6",
     "mocha": "^8.2.1",

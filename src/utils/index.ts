@@ -64,7 +64,7 @@ export function getCurrentFilePath() {
  */
 export function copyTemplates(dest: string, callback: (...args: any[]) => any) {
   try {
-    const src = join(__dirname, "..", "src/templates");
+    const src = join(__dirname, "templates");
     copySync(src, dest);
     callback(null);
   } catch (err) {
