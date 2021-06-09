@@ -1,8 +1,8 @@
 {
-  "name": "vscode-extensions-baymax",
-  "displayName": "vscode-extensions-baymax",
-  "description": "vscode-extensions-baymax",
-  "version": "0.0.3",
+  "name": "youzan-baymax",
+  "displayName": "youzan-baymax",
+  "description": "youzan baymax",
+  "version": "0.0.4",
   "author": "jinxiaochuan",
   "license": "ISC",
   "icon": "images/icon.png",
