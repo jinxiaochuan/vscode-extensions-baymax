@@ -9,6 +9,7 @@
     "type": "git",
     "url": "git+https://github.com/jinxiaochuan/vscode-extensions-baymax.git"
   },
+  "publisher": "jinxiaochuan",
   "engines": {
     "vscode": "^1.56.0"
   },
