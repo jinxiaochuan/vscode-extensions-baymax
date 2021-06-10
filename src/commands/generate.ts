@@ -1,7 +1,7 @@
 import { window } from "vscode";
 import { copyTemplates, getCurrentFilePath } from "../utils";
 
-export default function generate() {
+export function generate() {
   const currentFilePath = getCurrentFilePath();
   if (!currentFilePath) {
     window.showErrorMessage("🤔️ 请进入你的本地项目～");

@@ -20,8 +20,9 @@
   ],
   "activationEvents": [
     "onCommand:baymax.generate",
-    "onCommand:terminalSample.create",
-    "onCommand:terminalSample.clear"
+    "onCommand:samples.terminal.create",
+    "onCommand:samples.terminal.clear",
+    "onCommand:samples.quickInput"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -34,15 +35,19 @@
     "commands": [
       {
         "command": "baymax.generate",
-        "title": "Baymax Extension Terminal: Generate"
+        "title": "Baymax: Generate"
       },
       {
-        "command": "terminalSample.create",
-        "title": "TerminalSample Extension Terminal: Create"
+        "command": "samples.terminal.create",
+        "title": "Samples Terminal: Create"
       },
       {
-        "command": "terminalSample.clear",
-        "title": "TerminalSample Extension Terminal: Clear"
+        "command": "samples.terminal.clear",
+        "title": "Samples Terminal: Clear"
+      },
+      {
+        "command": "samples.quickInput",
+        "title": "Samples Quick Input"
       }
     ]
   },

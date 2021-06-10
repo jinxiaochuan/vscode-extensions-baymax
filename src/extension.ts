@@ -5,6 +5,7 @@ import {
   generate,
   terminalSampleCreate,
   terminalSampleClear,
+  quickinputSample,
 } from "./commands";
 
 // this method is called when your extension is activated
@@ -12,20 +13,27 @@ import {
 export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand(
-      "terminalSample.create",
+      "samples.terminal.create",
       terminalSampleCreate
     )
   );
 
   context.subscriptions.push(
     vscode.commands.registerCommand(
-      "terminalSample.clear",
+      "samples.terminal.clear",
       terminalSampleClear
     )
   );
 
   context.subscriptions.push(
     vscode.commands.registerCommand("baymax.generate", generate)
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      "samples.quickInput",
+      quickinputSample(context)
+    )
   );
 }
 
