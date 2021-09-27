@@ -6,6 +6,7 @@ import {
   terminalSampleCreate,
   terminalSampleClear,
   quickinputSample,
+  createAppPanel,
 } from "./commands";
 
 // this method is called when your extension is activated
@@ -34,6 +35,10 @@ export function activate(context: vscode.ExtensionContext) {
       "samples.quickInput",
       quickinputSample(context)
     )
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand("baymax.webview", createAppPanel(context))
   );
 }
 
