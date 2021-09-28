@@ -1,12 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Home from "./pages/home";
+import Drag from "./pages/drag";
 import reportWebVitals from "./reportWebVitals";
 import "antd/dist/antd.less";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Home />
+    {/* <Home /> */}
+    <Drag />
   </React.StrictMode>,
   document.getElementById("root")
 );
