@@ -4,6 +4,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 import DroppableItem from "./components/droppable-item";
 import MovableItem, { IOnDropParam } from "./components/movable-item";
+import channel from "./components/signal-channel";
 import "./index.less";
 
 const MOVABLE_ITEM_LIST = [
@@ -51,6 +52,7 @@ const Drag = () => {
         }
       });
       setList(swapList);
+      channel.postMessage(swapList);
     },
     [list]
   );

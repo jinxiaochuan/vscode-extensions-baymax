@@ -3968,6 +3968,11 @@ crypto-random-string@^1.0.0:
   resolved "https://registry.yarnpkg.com/crypto-random-string/-/crypto-random-string-1.0.0.tgz#a230f64f568310e1498009940790ec99545bca7e"
   integrity sha1-ojD2T1aDEOFJgAmUB5DsmVRbyn4=
 
+cs-channel@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/cs-channel/-/cs-channel-1.0.4.tgz#d48a439734f81676bf4bad4ff38214c905413061"
+  integrity sha512-fhCaQKnhj325Wynu42TCn5rKL75FmS6tVSKL4HxtAlOEJpyREW2CGR7wRrTTJ9hHgkBY/58CPp81FfZ6M7jDuw==
+
 css-blank-pseudo@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/css-blank-pseudo/-/css-blank-pseudo-0.1.4.tgz#dfdefd3254bf8a82027993674ccf35483bfcb3c5"

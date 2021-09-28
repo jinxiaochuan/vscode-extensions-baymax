@@ -6,6 +6,7 @@ import {
   window,
 } from "vscode";
 import fetch from "node-fetch";
+import Channel from "cs-channel";
 import { DEV_WEBVIEW_PATH, WEBVIEW_PATH } from "../constants";
 
 interface IGetWebViewHTMLParams {
@@ -15,9 +16,14 @@ interface IGetWebViewHTMLParams {
   panel: WebviewPanel;
 }
 
-type GetWebViewHTML = (params: IGetWebViewHTMLParams) => Promise<string>;
+type IGetWebViewHTML = (params: IGetWebViewHTMLParams) => Promise<string>;
 
-const getWebViewHTML: GetWebViewHTML = ({ port, path, webviewPath, panel }) => {
+const getWebViewHTML: IGetWebViewHTML = ({
+  port,
+  path,
+  webviewPath,
+  panel,
+}) => {
   const webviewUrl = `http://localhost:${port}${path}`;
 
   return new Promise((resolve) => {
@@ -31,6 +37,31 @@ const getWebViewHTML: GetWebViewHTML = ({ port, path, webviewPath, panel }) => {
       }
     );
   });
+};
+
+const establishSignalChannel = (
+  panel: WebviewPanel,
+  context: ExtensionContext
+) => {
+  const channel = new Channel({
+    receiver: (callback) => {
+      panel.webview.onDidReceiveMessage(
+        (message) => {
+          message.api && callback(message);
+        },
+        undefined,
+        context.subscriptions
+      );
+    },
+    sender: (message) => void panel.webview.postMessage(message),
+  });
+
+  channel.on("hello", async (data) => {
+    console.log("hello", data);
+    window.showInformationMessage("要重新生成数据模版啦～😄");
+  });
+
+  return channel;
 };
 
 const createPanel = async (
@@ -63,6 +94,9 @@ const createPanel = async (
 
   const html = await getWebViewHTML({ port, path, webviewPath, panel });
   panel.webview.html = html;
+
+  // 建立与webview通信通道
+  establishSignalChannel(panel, context);
 };
 
 export const createAppPanel = (context: ExtensionContext) => () => {

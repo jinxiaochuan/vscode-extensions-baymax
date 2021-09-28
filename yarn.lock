@@ -769,6 +769,11 @@ cross-spawn@^7.0.2, cross-spawn@^7.0.3:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
+cs-channel@^1.0.4:
+  version "1.0.4"
+  resolved "http://registry.npm.qima-inc.com/cs-channel/download/cs-channel-1.0.4.tgz#d48a439734f81676bf4bad4ff38214c905413061"
+  integrity sha1-1IpDlzT4Fna/S61P84IUyQVBMGE=
+
 debug@4, debug@4.3.1, debug@^4.0.1, debug@^4.1.1:
   version "4.3.1"
   resolved "http://registry.npm.qima-inc.com/debug/download/debug-4.3.1.tgz#f0d229c505e0c6d8c49ac553d1b13dc183f6b2ee"

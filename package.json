@@ -91,6 +91,7 @@
     "webpack-cli": "^4.4.0"
   },
   "dependencies": {
+    "cs-channel": "^1.0.4",
     "fs-extra": "^10.0.0",
     "node-fetch": "^2.6.1"
   },
