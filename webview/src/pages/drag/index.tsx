@@ -7,7 +7,7 @@ import MovableItem, { IOnDropParam } from "./components/movable-item";
 import channel, {
   IActionType,
   IDragMessage,
-} from "../components/signal-channel";
+} from "@/components/signal-channel";
 
 const MOVABLE_ITEM_LIST: IDragMessage[] = [
   {

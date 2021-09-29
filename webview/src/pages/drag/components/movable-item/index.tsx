@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Card, Avatar } from "antd";
 import { useDrag } from "react-dnd";
-import { IDragMessage } from "../../../components/signal-channel";
+import { IDragMessage } from "@/components/signal-channel";
 
 const { Meta } = Card;
 

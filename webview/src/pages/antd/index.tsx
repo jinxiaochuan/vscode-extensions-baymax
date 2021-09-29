@@ -2,8 +2,6 @@ import React, { useState, useCallback } from "react";
 import { Form } from "antd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
-import DroppableItem from "./components/droppable-item";
-import MovableItem, { IOnDropParam } from "./components/movable-item";
 import {
   FormInput,
   FormDateInputNumber,
@@ -12,9 +10,11 @@ import {
   FormCascader,
   FormDatePicker,
   FormDateSwitch,
-} from "../components/form-filter";
-import FormTable from "../components/form-table";
-import channel, { IActionType } from "../components/signal-channel";
+} from "@/components/form-filter";
+import FormTable from "@/components/form-table";
+import channel, { IActionType } from "@/components/signal-channel";
+import DroppableItem from "./components/droppable-item";
+import MovableItem, { IOnDropParam } from "./components/movable-item";
 
 const MOVABLE_ITEM_LIST = [
   {

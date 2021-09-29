@@ -3,6 +3,7 @@ const {
   overrideDevServer,
   addDecoratorsLegacy,
   addLessLoader,
+  addWebpackAlias,
 } = require("customize-cra");
 const fs = require("fs");
 const path = require("path");
@@ -40,7 +41,11 @@ module.exports = {
     }),
 
     // enable legacy decorators babel plugin
-    addDecoratorsLegacy()
+    addDecoratorsLegacy(),
+
+    addWebpackAlias({
+      "@/components": path.resolve(__dirname, "src/pages/components"),
+    })
   ),
   devServer: overrideDevServer(
     // set devServer writeToDisk
