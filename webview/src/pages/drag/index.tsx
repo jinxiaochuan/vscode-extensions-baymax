@@ -4,10 +4,12 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 import DroppableItem from "./components/droppable-item";
 import MovableItem, { IOnDropParam } from "./components/movable-item";
-import channel from "./components/signal-channel";
-import "./index.less";
+import channel, {
+  IActionType,
+  IDragMessage,
+} from "../components/signal-channel";
 
-const MOVABLE_ITEM_LIST = [
+const MOVABLE_ITEM_LIST: IDragMessage[] = [
   {
     id: 1,
     name: "钢铁侠",
@@ -31,6 +33,12 @@ const MOVABLE_ITEM_LIST = [
     cover:
       "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.huabanimg.com%2F7af1be7c4ab2cee47f519fe5ff7124a76a98708639d93-f1eL1C_fw658&refer=http%3A%2F%2Fhbimg.huabanimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1635392830&t=4e37df8ac57d84b17c3b5cbcddc2581a",
   },
+  {
+    id: 5,
+    name: "美队",
+    cover:
+      "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F11419743254%2F1000.jpg&refer=http%3A%2F%2Finews.gtimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1635477805&t=52a48751674ec2ab1fda6ac2ac8e2c4e",
+  },
 ];
 
 const Drag = () => {
@@ -52,27 +60,30 @@ const Drag = () => {
         }
       });
       setList(swapList);
-      channel.postMessage(swapList);
+      channel.postMessage({
+        type: IActionType.HELLO,
+        data: swapList,
+      });
     },
     [list]
   );
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <Col>
+      <Row>
         {list.map((item) => (
-          <Row key={item.id}>
+          <Col key={item.id}>
             <DroppableItem
               dragId={item.id}
               hoverable
               style={{ width: 200 }}
               cover={<img alt="example" src={item.cover} />}
             >
-              <MovableItem dragId={item.id} name={item.name} onDrop={onDrop} />
+              <MovableItem data={item} onDrop={onDrop} />
             </DroppableItem>
-          </Row>
+          </Col>
         ))}
-      </Col>
+      </Row>
     </DndProvider>
   );
 };

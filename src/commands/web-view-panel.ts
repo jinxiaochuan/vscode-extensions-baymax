@@ -9,6 +9,11 @@ import fetch from "node-fetch";
 import Channel from "cs-channel";
 import { DEV_WEBVIEW_PATH, WEBVIEW_PATH } from "../constants";
 
+export enum IActionType {
+  HELLO = "hello",
+  GENERATE_SNIPPETS = "generate-snippets",
+}
+
 interface IGetWebViewHTMLParams {
   port: number;
   path: string;
@@ -56,9 +61,14 @@ const establishSignalChannel = (
     sender: (message) => void panel.webview.postMessage(message),
   });
 
-  channel.on("hello", async (data) => {
-    console.log("hello", data);
-    window.showInformationMessage("要重新生成数据模版啦～😄");
+  channel.on(IActionType.HELLO, async (data) => {
+    console.log(IActionType.HELLO, data);
+    window.showInformationMessage("🪆要重新生成数据模版啦～😄~");
+  });
+
+  channel.on(IActionType.GENERATE_SNIPPETS, async (data) => {
+    console.log(IActionType.GENERATE_SNIPPETS, data);
+    window.showInformationMessage("🐂生成snippets数据模版啦～😄~");
   });
 
   return channel;

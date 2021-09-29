@@ -1,9 +1,6 @@
 import React, { FC } from "react";
-import { Card, Avatar } from "antd";
 import { useDrag } from "react-dnd";
-import { IDragMessage } from "../../../components/signal-channel";
-
-const { Meta } = Card;
+import "./index.less";
 
 type DragObject = {
   name: string;
@@ -19,18 +16,19 @@ type CollectedProps = {
 export type IOnDropParam = { draggedItem: DragObject; droppedItem: DropResult };
 
 interface IProps {
-  data: IDragMessage;
+  name?: string;
+  dragId: number;
   onDrop?: (drag: IOnDropParam) => void;
 }
 
-const MovableItem: FC<IProps> = ({ data, onDrop }) => {
+const MovableItem: FC<IProps> = ({ name, dragId, onDrop, children }) => {
   const [{ isDragging }, drag] = useDrag<
     DragObject,
     DropResult,
     CollectedProps
   >({
-    type: "DragDND",
-    item: { name: "MovableItemName", dragId: data.id },
+    type: "AntdDragDND",
+    item: { name: "MovableItemName", dragId },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
@@ -53,12 +51,9 @@ const MovableItem: FC<IProps> = ({ data, onDrop }) => {
   const opacity = isDragging ? 0.4 : 1;
 
   return (
-    <div ref={drag} style={{ opacity }}>
-      <Meta
-        avatar={<Avatar src={data.cover} />}
-        title={data.name}
-        description={`hello, ${data.name} ~`}
-      />
+    <div className="movable-item" ref={drag} style={{ opacity }}>
+      {name}
+      {children}
     </div>
   );
 };
