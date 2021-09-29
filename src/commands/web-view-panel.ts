@@ -110,5 +110,5 @@ const createPanel = async (
 };
 
 export const createAppPanel = (context: ExtensionContext) => () => {
-  createPanel("baymax-webview", "/index.html", context);
+  createPanel("baymax-webview", "/antd", context);
 };

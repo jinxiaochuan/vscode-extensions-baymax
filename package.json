@@ -20,10 +20,7 @@
   ],
   "activationEvents": [
     "onCommand:baymax.generate",
-    "onCommand:baymax.webview",
-    "onCommand:samples.terminal.create",
-    "onCommand:samples.terminal.clear",
-    "onCommand:samples.quickInput"
+    "onCommand:baymax.webview"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -39,22 +36,45 @@
         "title": "Baymax: Generate"
       },
       {
-        "command": "samples.terminal.create",
-        "title": "Samples Terminal: Create"
-      },
-      {
-        "command": "samples.terminal.clear",
-        "title": "Samples Terminal: Clear"
-      },
-      {
-        "command": "samples.quickInput",
-        "title": "Samples Quick Input"
-      },
-      {
         "command": "baymax.webview",
         "title": "Baymax: WebView"
       }
-    ]
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "baymax",
+          "title": "baymax",
+          "icon": "images/icon.png"
+        }
+      ]
+    },
+    "views": {
+      "baymax": [
+        {
+          "id": "BaymaxWebViewDrag",
+          "name": "拖拽小示例"
+        },
+        {
+          "id": "BaymaxWebView",
+          "name": "拖拽生成代码"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "baymax.webview",
+          "when": "view == BaymaxWebView",
+          "group": "navigation"
+        },
+        {
+          "command": "baymax.webview",
+          "when": "view == BaymaxWebViewDrag",
+          "group": "navigation"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "yarn run build",

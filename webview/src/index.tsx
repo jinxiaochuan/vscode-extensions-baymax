@@ -1,19 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Row } from "antd";
-import Drag from "./pages/drag";
-import Antd from "./pages/antd";
 import reportWebVitals from "./reportWebVitals";
 import "./index.less";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Row>
-      <Drag />
-    </Row>
-    <Row>
-      <Antd />
-    </Row>
+    <Row>Hello Word</Row>
   </React.StrictMode>,
   document.getElementById("root")
 );

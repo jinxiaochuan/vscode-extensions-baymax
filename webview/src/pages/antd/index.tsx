@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import ReactDOM from "react-dom";
 import { Form } from "antd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
@@ -15,6 +16,7 @@ import FormTable from "@/components/form-table";
 import channel, { IActionType } from "@/components/signal-channel";
 import DroppableItem from "./components/droppable-item";
 import MovableItem, { IOnDropParam } from "./components/movable-item";
+import "../../index.less";
 
 const MOVABLE_ITEM_LIST = [
   {
@@ -54,7 +56,7 @@ const MOVABLE_ITEM_LIST = [
   },
 ];
 
-const Drag = () => {
+const Antd = () => {
   const [list, setList] = useState(MOVABLE_ITEM_LIST);
 
   const onDrop = useCallback(
@@ -103,4 +105,6 @@ const Drag = () => {
   );
 };
 
-export default Drag;
+export default Antd;
+
+ReactDOM.render(<Antd />, document.getElementById("root"));

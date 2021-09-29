@@ -23,7 +23,7 @@
   },
   "scripts": {
     "start": "BUILD_PATH='dist' react-app-rewired start",
-    "build": "react-app-rewired build",
+    "build": "BUILD_PATH='dist' react-app-rewired build",
     "build-for-tool": "BUILD_PATH='../dist/webview' yarn build",
     "test": "react-app-rewired test"
   },
