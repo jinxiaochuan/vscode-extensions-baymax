@@ -12,6 +12,8 @@ const path = require("path");
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 
+const PAGE_CATALOGUE = ["antd", "drag"];
+
 const setWebpackOutput =
   (outputConfig = {}) =>
   (config) => {
@@ -25,10 +27,10 @@ const setWebpackDevServerWriteToDisk = (writeToDisk) => (devServerConfig) => {
 };
 
 const setWebpackDevServerRewrites = () => (devServerConfig) => {
-  devServerConfig.historyApiFallback.rewrites = [
-    { from: /^\/antd$/, to: "/pages/antd.html" },
-    { from: /^\/drag$/, to: "/pages/drag.html" },
-  ];
+  devServerConfig.historyApiFallback.rewrites = PAGE_CATALOGUE.map((page) => ({
+    from: new RegExp(`/${page}`),
+    to: `/pages/${page}.html`,
+  }));
   return devServerConfig;
 };
 
@@ -70,10 +72,13 @@ const removeWebpackPlugin = (webpackPluginName) => (config) => {
 
 // https://juejin.cn/post/6844903891994148871
 const supportMultiPage = () => (config) => {
-  const multiEntry = {
-    drag: resolveApp("src/pages/drag/index"),
-    antd: resolveApp("src/pages/antd/index"),
-  };
+  const multiEntry = PAGE_CATALOGUE.reduce(
+    (pre, cur) => ({
+      ...pre,
+      [cur]: resolveApp(`src/pages/${cur}/index`),
+    }),
+    {}
+  );
 
   const multiHtmlPlugins = Object.keys(multiEntry).map((entry) => {
     return new HtmlWebpackPlugin({
@@ -97,6 +102,8 @@ const supportMultiPage = () => (config) => {
   });
 
   config.entry = multiEntry;
+
+  config.output.filename = "static/js/[name].bundle.js";
 
   config.plugins = [...multiHtmlPlugins, ...config.plugins];
 
