@@ -49,8 +49,8 @@
       "activitybar": [
         {
           "id": "baymax",
-          "title": "baymax",
-          "icon": "images/icon.png"
+          "title": "有赞云baymax模板代码",
+          "icon": "images/bear.png"
         }
       ]
     },
@@ -70,12 +70,12 @@
       "view/title": [
         {
           "command": "BaymaxExampleView",
-          "when": "view == ShowDragView",
+          "when": "view == ShowExampleView",
           "group": "navigation"
         },
         {
           "command": "BaymaxDragView",
-          "when": "view == ShowExampleView",
+          "when": "view == ShowDragView",
           "group": "navigation"
         }
       ]
