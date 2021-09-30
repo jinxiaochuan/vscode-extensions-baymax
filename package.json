@@ -19,8 +19,9 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:baymax.generate",
-    "onCommand:baymax.webview"
+    "onCommand:BaymaxGenerate",
+    "onCommand:BaymaxExampleView",
+    "onCommand:BaymaxDragView"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -32,12 +33,16 @@
     ],
     "commands": [
       {
-        "command": "baymax.generate",
-        "title": "Baymax: Generate"
+        "command": "BaymaxGenerate",
+        "title": "Baymax: 生成代码"
       },
       {
-        "command": "baymax.webview",
-        "title": "Baymax: WebView"
+        "command": "BaymaxExampleView",
+        "title": "Baymax: 示例拖拽"
+      },
+      {
+        "command": "BaymaxDragView",
+        "title": "Baymax: 低代码拖拽"
       }
     ],
     "viewsContainers": {
@@ -52,11 +57,11 @@
     "views": {
       "baymax": [
         {
-          "id": "BaymaxWebViewDrag",
+          "id": "ShowExampleView",
           "name": "拖拽小示例"
         },
         {
-          "id": "BaymaxWebView",
+          "id": "ShowDragView",
           "name": "拖拽生成代码"
         }
       ]
@@ -64,13 +69,13 @@
     "menus": {
       "view/title": [
         {
-          "command": "baymax.webview",
-          "when": "view == BaymaxWebView",
+          "command": "BaymaxExampleView",
+          "when": "view == ShowDragView",
           "group": "navigation"
         },
         {
-          "command": "baymax.webview",
-          "when": "view == BaymaxWebViewDrag",
+          "command": "BaymaxDragView",
+          "when": "view == ShowExampleView",
           "group": "navigation"
         }
       ]

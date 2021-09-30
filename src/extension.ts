@@ -6,7 +6,8 @@ import {
   terminalSampleCreate,
   terminalSampleClear,
   quickinputSample,
-  createAppPanel,
+  createExamplePanel,
+  createDragPanel,
 } from "./commands";
 
 // this method is called when your extension is activated
@@ -27,7 +28,7 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   context.subscriptions.push(
-    vscode.commands.registerCommand("baymax.generate", generate)
+    vscode.commands.registerCommand("BaymaxGenerate", generate)
   );
 
   context.subscriptions.push(
@@ -38,7 +39,11 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   context.subscriptions.push(
-    vscode.commands.registerCommand("baymax.webview", createAppPanel(context))
+    vscode.commands.registerCommand("BaymaxExampleView", createExamplePanel(context))
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand("BaymaxDragView", createDragPanel(context))
   );
 }
 

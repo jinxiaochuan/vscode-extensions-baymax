@@ -4,6 +4,7 @@ import {
   ViewColumn,
   WebviewPanel,
   window,
+  commands,
 } from "vscode";
 import fetch from "node-fetch";
 import Channel from "cs-channel";
@@ -63,12 +64,11 @@ const establishSignalChannel = (
 
   channel.on(IActionType.HELLO, async (data) => {
     console.log(IActionType.HELLO, data);
-    window.showInformationMessage("🪆要重新生成数据模版啦～😄~");
   });
 
   channel.on(IActionType.GENERATE_SNIPPETS, async (data) => {
     console.log(IActionType.GENERATE_SNIPPETS, data);
-    window.showInformationMessage("🐂生成snippets数据模版啦～😄~");
+    await commands.executeCommand("BaymaxGenerate");
   });
 
   return channel;
@@ -109,6 +109,10 @@ const createPanel = async (
   establishSignalChannel(panel, context);
 };
 
-export const createAppPanel = (context: ExtensionContext) => () => {
-  createPanel("baymax-webview", "/antd", context);
+export const createExamplePanel = (context: ExtensionContext) => () => {
+  createPanel("Baymax: Example", "/drag", context);
+};
+
+export const createDragPanel = (context: ExtensionContext) => () => {
+  createPanel("Baymax: Drag", "/antd", context);
 };
