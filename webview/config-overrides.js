@@ -28,7 +28,7 @@ const setWebpackDevServerWriteToDisk = (writeToDisk) => (devServerConfig) => {
 const setWebpackDevServerRewrites = () => (devServerConfig) => {
   devServerConfig.historyApiFallback.rewrites = pageCatalogue.map((page) => ({
     from: new RegExp(`/${page}`),
-    to: `/pages/${page}.html`,
+    to: `/pages/${page}/index.html`,
   }));
   return devServerConfig;
 };
@@ -84,7 +84,7 @@ const supportMultiPage = () => (config) => {
       inject: true,
       template: resolveApp("public/index.html"),
       chunks: [entry],
-      filename: `pages/${entry}.html`,
+      filename: `pages/${entry}/index.html`,
       title: entry,
       minify: {
         removeComments: true,
