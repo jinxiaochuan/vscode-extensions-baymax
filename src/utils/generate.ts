@@ -1,5 +1,5 @@
 import { join } from "path";
-import { existsSync } from "fs";
+import { existsSync, readdirSync, lstatSync } from "fs";
 import { workspace, window } from "vscode";
 import { copySync } from "fs-extra";
 
@@ -66,6 +66,34 @@ export function copyTemplates(dest: string, callback: (...args: any[]) => any) {
   try {
     const src = join(__dirname, "templates");
     copySync(src, dest);
+    callback(null);
+  } catch (err) {
+    callback(err);
+  }
+}
+
+export function copyCode(
+  destDirs: {
+    clientDir: string;
+    nodeDir: string;
+  },
+  dirName: string,
+  callback: (...args: any[]) => any
+) {
+  try {
+    const clientDir = join(__dirname, "templates/code/client");
+    const nodeDir = join(__dirname, "templates/code/node");
+    const nodeDirFiles = readdirSync(nodeDir);
+    nodeDirFiles.forEach((file) => {
+      var stat = lstatSync(`${nodeDir}/${file}`);
+      if (stat.isDirectory()) {
+        copySync(
+          `${nodeDir}/${file}`,
+          `${destDirs.nodeDir}/${file}/${dirName}`
+        );
+      }
+    });
+    copySync(clientDir, `${destDirs.clientDir}/${dirName}`);
     callback(null);
   } catch (err) {
     callback(err);

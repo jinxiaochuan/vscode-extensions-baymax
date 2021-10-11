@@ -8,6 +8,7 @@ import {
   quickinputSample,
   createExamplePanel,
   createDragPanel,
+  generateCode,
 } from "./commands";
 
 // this method is called when your extension is activated
@@ -29,6 +30,10 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand("BaymaxGenerate", generate)
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand("BaymaxGenerateCode", generateCode)
   );
 
   context.subscriptions.push(

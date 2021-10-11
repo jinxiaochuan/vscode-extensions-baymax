@@ -1,0 +1,9 @@
+{% extends '../layout/layout-app.html' %}
+
+{% block page_style %}
+	{{loadCss('styles/vscode-snippets') | safe }}
+{% endblock %}
+
+{% block page_script %}
+	{{ loadJs('js/vscode-snippets') | safe }}
+{% endblock %}

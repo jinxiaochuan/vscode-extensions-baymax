@@ -68,7 +68,7 @@ const establishSignalChannel = (
 
   channel.on(IActionType.GENERATE_SNIPPETS, async (data) => {
     console.log(IActionType.GENERATE_SNIPPETS, data);
-    await commands.executeCommand("BaymaxGenerate");
+    await commands.executeCommand("BaymaxGenerateCode");
   });
 
   return channel;

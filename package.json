@@ -19,7 +19,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:BaymaxGenerate",
+    "onCommand:BaymaxGenerateCode",
     "onCommand:BaymaxExampleView",
     "onCommand:BaymaxDragView"
   ],
@@ -33,7 +33,7 @@
     ],
     "commands": [
       {
-        "command": "BaymaxGenerate",
+        "command": "BaymaxGenerateCode",
         "title": "Baymax: 生成代码"
       },
       {

@@ -1,0 +1,100 @@
+@import '~styles/common/var';
+@import '~styles/common/color';
+
+.vscode-snippets {
+  background: $stroke-0;
+  min-height: 100%;
+  box-sizing: border-box;
+  background-color: $stroke-1;
+  display: flex;
+
+  &-content,
+  &-sidebar {
+    background-color: $stroke-0;
+  }
+
+  &-sidebar {
+    padding: 0 2px;
+
+    &-title {
+      margin: 16px 24px 6px;
+      padding-bottom: 6px;
+      font-size: 14px;
+      border-bottom: 1px solid $stroke-3;
+    }
+
+    .zent-menu {
+      width: 150px;
+      font-size: 14px;
+      border: none;
+      box-shadow: none;
+      color: inherit;
+
+      &__inline-item-selected {
+        color: inherit;
+      }
+    }
+    .zent-menu-item {
+      padding-left: 24px;
+      border-radius: 2px;
+
+      &:hover {
+        background-color: #4a90e233;
+        color: inherit;
+      }
+    }
+  }
+
+  .appstore-search-block {
+    &-wrapper {
+      padding: 24px 22px;
+      background-color: $stroke-1;
+    }
+
+    .zent-form__control-group .zent-form__control-label {
+      text-align: right;
+      width: 40px !important;
+    }
+
+    &-btn {
+      margin-left: 50px;
+    }
+  }
+
+  .zent-form--inline.appstore-app-search-block {
+    .zent-form__control-group .zent-form__controls {
+      width: 244px;
+    }
+  }
+
+  &-content {
+    flex: 1;
+    margin-left: 12px;
+    padding: 10px 14px;
+  }
+
+  .zent-tabs {
+    margin-bottom: 20px;
+  }
+
+  .zent-form {
+    margin-bottom: 0;
+  }
+
+  .zent-table-operation {
+    color: $blue;
+
+    &-separator {
+      margin: 0 5px;
+    }
+  }
+}
+
+body .appstore-select__popover {
+  width: 244px;
+}
+
+.link {
+  color: $blue;
+  cursor: pointer;
+}
