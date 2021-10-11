@@ -35,19 +35,19 @@
     "commands": [
       {
         "command": "BaymaxGenerateCode",
-        "title": "Baymax: 生成代码"
+        "title": "baymax: 生成代码"
       },
       {
         "command": "BaymaxExampleView",
-        "title": "Baymax: 示例拖拽"
+        "title": "baymax: 示例拖拽"
       },
       {
         "command": "BaymaxDragView",
-        "title": "Baymax: 低代码拖拽"
+        "title": "baymax: 低代码拖拽"
       },
       {
         "command": "BaymaxCodeView",
-        "title": "Baymax: 模板代码"
+        "title": "baymax: 模板代码"
       }
     ],
     "viewsContainers": {

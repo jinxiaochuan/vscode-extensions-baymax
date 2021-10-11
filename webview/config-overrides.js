@@ -124,7 +124,7 @@ module.exports = {
     // set output path
     setWebpackOutput({
       path: resolveApp(process.env.BUILD_PATH),
-      publicPath: "http://localhost:3000/",
+      publicPath: process.env.NODE_ENV === 'production' ? "http://47.98.159.224": "http://localhost:3000",
     }),
 
     // enable legacy decorators babel plugin

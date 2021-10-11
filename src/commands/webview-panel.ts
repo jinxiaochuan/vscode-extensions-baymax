@@ -1,6 +1,5 @@
 import {
   ExtensionContext,
-  Uri,
   ViewColumn,
   WebviewPanel,
   window,
@@ -8,19 +7,17 @@ import {
 } from "vscode";
 import fetch from "node-fetch";
 import Channel from "cs-channel";
-import { DEV_WEBVIEW_PATH, WEBVIEW_PATH } from "../constants";
+import {
+  DEV_WEBVIEW_PORT,
+  DEV_WEBVIEW_URL,
+  WEBVIEW_PORT,
+  WEBVIEW_URL,
+} from "../constants";
 import { IActionType, IGetWebViewHTML } from "../types";
 
-const getWebViewHTML: IGetWebViewHTML = ({
-  port,
-  path,
-  webviewPath,
-  panel,
-}) => {
-  const webviewUrl = `http://localhost:${port}${path}`;
-
+const getWebViewHTML: IGetWebViewHTML = ({ path, webviewUrl, panel }) => {
   return new Promise((resolve) => {
-    fetch(webviewUrl).then(
+    fetch(`${webviewUrl}/${path}`).then(
       async (res) => {
         let text = await res.text();
         resolve(text);
@@ -69,11 +66,10 @@ const createPanel = async (
   path: string,
   context: ExtensionContext
 ) => {
-  const port = 3000;
-  const webviewPath = Uri.joinPath(
-    context.extensionUri,
-    process.env.DEBUG_ENV === "debug" ? DEV_WEBVIEW_PATH : WEBVIEW_PATH
-  );
+  const port =
+    process.env.DEBUG_ENV === "debug" ? DEV_WEBVIEW_PORT : WEBVIEW_PORT;
+  const webviewUrl =
+    process.env.DEBUG_ENV === "debug" ? DEV_WEBVIEW_URL : WEBVIEW_URL;
 
   const panel = window.createWebviewPanel(
     `BAYMAX-${title}`,
@@ -92,7 +88,7 @@ const createPanel = async (
     }
   );
 
-  const html = await getWebViewHTML({ port, path, webviewPath, panel });
+  const html = await getWebViewHTML({ path, webviewUrl, panel });
   panel.webview.html = html;
 
   // 建立与webview通信通道
@@ -100,13 +96,13 @@ const createPanel = async (
 };
 
 export const createExamplePanel = (context: ExtensionContext) => () => {
-  createPanel("Baymax: Example", "/drag", context);
+  createPanel("baymax: 拖拽小示例", "/drag", context);
 };
 
 export const createDragPanel = (context: ExtensionContext) => () => {
-  createPanel("Baymax: Drag", "/antd", context);
+  createPanel("baymax: 拖拽生成代码", "/antd", context);
 };
 
 export const createCodePanel = (context: ExtensionContext) => () => {
-  createPanel("Baymax: Code", "/code", context);
+  createPanel("baymax: 模板代码", "/code", context);
 };

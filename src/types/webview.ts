@@ -1,4 +1,4 @@
-import { Uri, WebviewPanel } from "vscode";
+import { WebviewPanel } from "vscode";
 
 export enum IActionType {
   HELLO = "hello",
@@ -14,9 +14,8 @@ export type ICodeMessage = {
 };
 
 export interface IGetWebViewHTMLParams {
-  port: number;
   path: string;
-  webviewPath: Uri;
+  webviewUrl: string;
   panel: WebviewPanel;
 }
 
