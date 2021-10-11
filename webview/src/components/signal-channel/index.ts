@@ -3,9 +3,13 @@ import Channel from "cs-channel";
 export enum IActionType {
   HELLO = "hello",
   GENERATE_SNIPPETS = "generate-snippets",
+  GENERATE_CODE = "generate-code",
 }
 
-export type IActionTypes = IActionType.HELLO | IActionType.GENERATE_SNIPPETS;
+export type IActionTypes =
+  | IActionType.HELLO
+  | IActionType.GENERATE_SNIPPETS
+  | IActionType.GENERATE_CODE;
 
 export type IDragMessage = {
   id: number;
@@ -18,6 +22,13 @@ export type IFormMessage = {
   type: string;
 };
 
+export type ICodeMessage = {
+  project: string;
+  clientDir: string;
+  nodeDir: string;
+  dirname: string;
+};
+
 export interface IAction<T extends IActionTypes, U extends any> {
   type: T;
   data: U;
@@ -25,7 +36,8 @@ export interface IAction<T extends IActionTypes, U extends any> {
 
 export type ISignalChannelAction =
   | IAction<IActionType.HELLO, Array<IDragMessage>>
-  | IAction<IActionType.GENERATE_SNIPPETS, Array<IFormMessage>>;
+  | IAction<IActionType.GENERATE_SNIPPETS, Array<IFormMessage>>
+  | IAction<IActionType.GENERATE_CODE, ICodeMessage>;
 
 /**
  * vscode & webview 通信（须为单例，acquireVsCodeApi仅可调用一次）

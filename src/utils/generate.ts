@@ -77,23 +77,30 @@ export function copyCode(
     clientDir: string;
     nodeDir: string;
   },
-  dirName: string,
+  dirname: string,
   callback: (...args: any[]) => any
 ) {
   try {
     const clientDir = join(__dirname, "templates/code/client");
     const nodeDir = join(__dirname, "templates/code/node");
     const nodeDirFiles = readdirSync(nodeDir);
-    nodeDirFiles.forEach((file) => {
-      var stat = lstatSync(`${nodeDir}/${file}`);
+    for (const file of nodeDirFiles) {
+      const stat = lstatSync(`${nodeDir}/${file}`);
       if (stat.isDirectory()) {
-        copySync(
-          `${nodeDir}/${file}`,
-          `${destDirs.nodeDir}/${file}/${dirName}`
-        );
+        const nodeDestDir = `${destDirs.nodeDir}/${file}/${dirname}`;
+        if (existsSync(nodeDestDir)) {
+          throw new Error(`node端已存在【${dirname}】文件目录`);
+        }
+
+        copySync(`${nodeDir}/${file}`, nodeDestDir);
       }
-    });
-    copySync(clientDir, `${destDirs.clientDir}/${dirName}`);
+    }
+
+    const clientDestDir = `${destDirs.clientDir}/${dirname}`;
+    if (existsSync(clientDestDir)) {
+      throw new Error(`client端已存在【${dirname}】文件目录`);
+    }
+    copySync(clientDir, clientDestDir);
     callback(null);
   } catch (err) {
     callback(err);

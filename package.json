@@ -21,7 +21,8 @@
   "activationEvents": [
     "onCommand:BaymaxGenerateCode",
     "onCommand:BaymaxExampleView",
-    "onCommand:BaymaxDragView"
+    "onCommand:BaymaxDragView",
+    "onCommand:BaymaxCodeView"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -43,6 +44,10 @@
       {
         "command": "BaymaxDragView",
         "title": "Baymax: 低代码拖拽"
+      },
+      {
+        "command": "BaymaxCodeView",
+        "title": "Baymax: 模板代码"
       }
     ],
     "viewsContainers": {
@@ -57,6 +62,10 @@
     "views": {
       "baymax": [
         {
+          "id": "BaymaxCodeView",
+          "name": "模板代码"
+        },
+        {
           "id": "ShowExampleView",
           "name": "拖拽小示例"
         },
@@ -68,6 +77,10 @@
     },
     "menus": {
       "view/title": [
+        {
+          "command": "BaymaxCodeView",
+          "group": "navigation"
+        },
         {
           "command": "BaymaxExampleView",
           "when": "view == ShowExampleView",
@@ -91,7 +104,7 @@
     "pretest": "yarn run test-compile && yarn run lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js",
-    "start:web-view": "cd ./webview && yarn start",
+    "start:webview": "cd ./webview && yarn start",
     "build:webview": "cd ./webview && yarn build-for-tool",
     "build": "yarn run package && yarn run build:webview"
   },

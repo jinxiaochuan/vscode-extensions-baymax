@@ -11,8 +11,7 @@ const fs = require("fs");
 const path = require("path");
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
-
-const PAGE_CATALOGUE = ["antd", "drag"];
+const pageCatalogue = fs.readdirSync(resolveApp("src/pages"));
 
 const setWebpackOutput =
   (outputConfig = {}) =>
@@ -27,7 +26,7 @@ const setWebpackDevServerWriteToDisk = (writeToDisk) => (devServerConfig) => {
 };
 
 const setWebpackDevServerRewrites = () => (devServerConfig) => {
-  devServerConfig.historyApiFallback.rewrites = PAGE_CATALOGUE.map((page) => ({
+  devServerConfig.historyApiFallback.rewrites = pageCatalogue.map((page) => ({
     from: new RegExp(`/${page}`),
     to: `/pages/${page}.html`,
   }));
@@ -72,7 +71,7 @@ const removeWebpackPlugin = (webpackPluginName) => (config) => {
 
 // https://juejin.cn/post/6844903891994148871
 const supportMultiPage = () => (config) => {
-  const multiEntry = PAGE_CATALOGUE.reduce(
+  const multiEntry = pageCatalogue.reduce(
     (pre, cur) => ({
       ...pre,
       [cur]: resolveApp(`src/pages/${cur}/index`),
@@ -132,7 +131,7 @@ module.exports = {
     addDecoratorsLegacy(),
 
     addWebpackAlias({
-      "@/components": path.resolve(__dirname, "src/pages/components"),
+      "@/components": path.resolve(__dirname, "src/components"),
     }),
 
     removeWebpackPlugin("ManifestPlugin"),

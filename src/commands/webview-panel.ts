@@ -9,20 +9,7 @@ import {
 import fetch from "node-fetch";
 import Channel from "cs-channel";
 import { DEV_WEBVIEW_PATH, WEBVIEW_PATH } from "../constants";
-
-export enum IActionType {
-  HELLO = "hello",
-  GENERATE_SNIPPETS = "generate-snippets",
-}
-
-interface IGetWebViewHTMLParams {
-  port: number;
-  path: string;
-  webviewPath: Uri;
-  panel: WebviewPanel;
-}
-
-type IGetWebViewHTML = (params: IGetWebViewHTMLParams) => Promise<string>;
+import { IActionType, IGetWebViewHTML } from "../types";
 
 const getWebViewHTML: IGetWebViewHTML = ({
   port,
@@ -67,8 +54,11 @@ const establishSignalChannel = (
   });
 
   channel.on(IActionType.GENERATE_SNIPPETS, async (data) => {
-    console.log(IActionType.GENERATE_SNIPPETS, data);
-    await commands.executeCommand("BaymaxGenerateCode");
+    await commands.executeCommand("BaymaxGenerate");
+  });
+
+  channel.on(IActionType.GENERATE_CODE, async (data) => {
+    await commands.executeCommand("BaymaxWebviewGenerateCode", data);
   });
 
   return channel;
@@ -115,4 +105,8 @@ export const createExamplePanel = (context: ExtensionContext) => () => {
 
 export const createDragPanel = (context: ExtensionContext) => () => {
   createPanel("Baymax: Drag", "/antd", context);
+};
+
+export const createCodePanel = (context: ExtensionContext) => () => {
+  createPanel("Baymax: Code", "/code", context);
 };
